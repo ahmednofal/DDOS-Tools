@@ -2,20 +2,19 @@
 
 for dir in tools/*
 do
-if [[ -d ${dir} ]]
+if [ -d ${dir} ]
 then
-    source setup.py install
-else
-    echo notadir
-    echo ${dir}
+    cd ${dir}
+    sudo ./setup.py install
+    cd -
 fi
 done
-cd $PWD/tools/pyddoz
-./setup install
-cd $PWD/tools/synFlood
-./setup install
-cd $PWD/tools/udpdos
-./setup install
+# cd $PWD/tools/pyddoz
+# ./setup install
+# cd $PWD/tools/synFlood
+# ./setup install
+# cd $PWD/tools/udpdos
+# ./setup install
 # # installing NTP DOS attack tool
 # git clone https://github.com/ahmednofal/ntpdos.git
 # cd ntpdos
