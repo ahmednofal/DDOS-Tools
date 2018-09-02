@@ -1,0 +1,30 @@
+#!/bin/bash
+
+for dir in tools/*
+do
+if [[ -d ${dir} ]]
+then
+    source setup.py install
+else
+    echo notadir
+    echo ${dir}
+fi
+done
+cd $PWD/tools/pyddoz
+./setup install
+cd $PWD/tools/synFlood
+./setup install
+cd $PWD/tools/udpdos
+./setup install
+# # installing NTP DOS attack tool
+# git clone https://github.com/ahmednofal/ntpdos.git
+# cd ntpdos
+# chmod 775 ntpdos.py
+# sudo cp ntpdos.py /usr/bin/ntpdos.py
+
+# # installing HTTP req based DOS tool
+
+# git clone https://github.com/vpnguy/ntpdos.git
+# cd ntpdos
+# chmod 775 ntpdos.py
+# sudo cp ntpdos.py /usr/bin/ntpdos.py

