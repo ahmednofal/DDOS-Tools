@@ -1,0 +1,12 @@
+[submodule "tools/ntpdos"]
+	path = tools/ntpdos
+	url = https://github.com/ahmednofal/ntpdos.git
+[submodule "tools/synFlood"]
+	path = tools/synFlood
+	url = https://github.com/ahmednofal/synFlood.git
+[submodule "tools/udpdos"]
+	path = tools/udpdos
+	url = https://github.com/ahmednofal/udpdos.git
+[submodule "tools/pyddoz"]
+	path = tools/pyddoz
+	url = https://github.com/ahmednofal/pyddoz.git
