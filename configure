@@ -1,11 +1,18 @@
 #!/bin/bash
+apt install python2 \
+    python3 \ 
+    python-pip \
+    python3-pip \
+    python3-dev 
+pip install netifaces
+pip3 install netifaces
 
 for dir in tools/*
 do
 if [ -d ${dir} ]
 then
     cd ${dir}
-    ./setup.py install
+    python setup.py install
     cd -
 fi
 done
