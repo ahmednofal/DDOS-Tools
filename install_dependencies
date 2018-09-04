@@ -1,6 +1,7 @@
 #!/bin/bash
-apt install -y python3 python-pip python3-pip python3-dev 
-pip install netifaces
+curl -O https://bootstrap.pypa.io/get-pip.py
+python3 get-pip.py
+apt install -y --fix-missing python3-dev 
 pip3 install netifaces
 pip3 install setuptools
 
