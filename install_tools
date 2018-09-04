@@ -1,0 +1,3 @@
+#!/bin/bash
+bash $PWD/install_dependencies
+bash $PWD/install_tools

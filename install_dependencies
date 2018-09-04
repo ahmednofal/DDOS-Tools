@@ -1,0 +1,10 @@
+#!/bin/bash
+apt install -y python2 \
+    python3 \ 
+    python-pip \
+    python3-pip \
+    python3-dev 
+pip install netifaces
+pip3 install netifaces
+pip3 install setuptools
+
