@@ -23,6 +23,9 @@ setuptools.setup(name=tool_name,
         "Operating System :: OS Independent",
     ],
         scripts = [
-                'scripts/ddos'
+                'scripts/ddos',
+                'scripts/killddos',
+                'scripts/killpyddoz',
+                'scripts/killsyner'
             ],
 )
