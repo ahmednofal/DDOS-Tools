@@ -1,4 +1,4 @@
 #!/bin/bash
 bash $PWD/install_dependencies
 bash $PWD/install_tools
-python3 setup.py install
+python2 setup.py install

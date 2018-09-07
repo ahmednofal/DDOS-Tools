@@ -1,7 +1,12 @@
 #!/bin/bash
+DEBIAN_FRONTEND=noninteractive apt install -y --fix-missing python3-dev
+DEBIAN_FRONTEND=noninteractive apt install -y --fix-missing python2.7
+DEBIAN_FRONTEND=noninteractive apt install -y --fix-missing python-minimal
 curl -O https://bootstrap.pypa.io/get-pip.py
 python3 get-pip.py
-DEBIAN_FRONTEND=noninteractive apt install -y --fix-missing python3-dev 
-pip3 install netifaces
+python2 get-pip.py
+pip install netifaces
+pip install netifaces
+pip3 install setuptools
 pip3 install setuptools
 

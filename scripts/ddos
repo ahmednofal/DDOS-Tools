@@ -69,7 +69,7 @@ synerPid = int
 def getCmdArgs(cmdDict):
     cmdArgsStr = ""
     for opt, value in cmdDict.items():
-        print(opt + " " + value)
+        print(str(opt)+ ' ' + str(value))
         cmdArgsStr += str(opt)+ ' ' + str(value)+ ' '
     # cmdArgsStr += "&"
     print("execing : " + cmdArgsStr)
