@@ -6,5 +6,9 @@ then
     cd ${dir}
     python3 setup.py install
     cd -
+    echo yes 
+    echo ${dir}
+else
+    echo no
 fi
 done
