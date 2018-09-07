@@ -1,0 +1,4 @@
+#!/bin/bash
+pkill -f pyddoz
+pkill -f syner
+pkill -f ddos

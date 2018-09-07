@@ -69,7 +69,7 @@ def getCmdArgs(cmdDict):
     cmdArgsStr = ""
     for opt, value in cmdDict.items():
         cmdArgsStr += str(opt)+ ' ' + str(value)+ ' '
-    # cmdArgsStr += "&"
+    cmdArgsStr += "&"
     return shlex.split(cmdArgsStr)
 
 def execAttackProcess(attackOpts):

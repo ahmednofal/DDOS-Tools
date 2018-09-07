@@ -3,4 +3,3 @@ rm -rf DDOS-Tools
 git clone --recursive https://github.com/ahmednofal/DDOS-Tools.git
 cd DDOS-Tools
 bash configure
-python3 setup.py install
