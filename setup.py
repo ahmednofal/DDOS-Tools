@@ -3,7 +3,7 @@
 import setuptools
 import io
 
-fh = io.open("test", mode="r", encoding="utf-8")
+fh = io.open("README.md", mode="r", encoding="utf-8")
 long_description = fh.read()
 
 
