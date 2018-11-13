@@ -1,3 +1,5 @@
+# Disclaimer
+YOU SHOULD NOT USE THIS SOFTWARE TO HARM OTHERS. THE USER IS THE ONLY ONE RESPONSIBLE FOR HOW THIS TOOL IS USED. THE DEVELOPER HOLDS NO LEGAL LIABILITY FOR HOW YOU USE THIS SOFTWARE. CHECK THE LICENSE.
 # DDOS-Tools
 Grouping of most of the ddos tools that act on a single machine and do not interact with botnets, just initialize a certain type of request to a certain host
 
